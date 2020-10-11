@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7D40EBE3-8A4B-45EA-A522-4C02A64A19E0}</ProjectGuid>
+    <ProjectGuid>{5E59806D-9338-4ADF-9F7A-EFB569A75327}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tetris</RootNamespace>
-    <AssemblyName>Tetris</AssemblyName>
+    <RootNamespace>TetrisGame</RootNamespace>
+    <AssemblyName>TetrisGame</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

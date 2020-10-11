@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tetris")]
-[assembly: AssemblyProduct("Tetris")]
+[assembly: AssemblyTitle("TetrisGame")]
+[assembly: AssemblyProduct("TetrisGame")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("HP Inc.")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9deac0c7-af9c-4697-88cc-3d18a4e224ab")]
+[assembly: Guid("cef0e113-600f-400d-ad03-59bc145f10c1")]
 
 // Version information for an assembly consists of the following four values:
 //

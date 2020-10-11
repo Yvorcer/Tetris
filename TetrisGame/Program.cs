@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tetris
+namespace TetrisGame
 {
 #if WINDOWS || LINUX
     /// <summary>
