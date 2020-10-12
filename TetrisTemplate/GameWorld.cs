@@ -38,7 +38,6 @@ class GameWorld
     /// The main grid of the game.
     /// </summary>
     TetrisGrid grid;
-    GameGrid grid1;
     Block block;
     NextBlock nextBlock;
     bool pause = false;
@@ -53,9 +52,8 @@ class GameWorld
         nextBlock = new NextBlock();
         grid = new TetrisGrid();
         block = new Block();
-        grid1 = new GameGrid();
         block.Grid = grid;
-        grid1.Gblock = block;
+        grid.Gblock = block;
         block.speedup = speedup;
     }
 
@@ -74,15 +72,15 @@ class GameWorld
     {
         if (pause)
             return;
-        if (grid1.GameOver())
+        if (grid.GameOver())
             return;
         block.Update(gameTime);
-        grid1.Update();
-        if (grid1.newblock)
+        grid.Update();
+        if (grid.newblock)
         {
             block.Newblock(nextBlock.nexblock);
             nextBlock = new NextBlock();
-            grid1.newblock = false;
+            grid.newblock = false;
         }
     }
 
@@ -90,7 +88,6 @@ class GameWorld
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
-        grid1.Draw(gameTime, spriteBatch);
         block.Draw(spriteBatch);
         nextBlock.Draw(spriteBatch);
         spriteBatch.End();

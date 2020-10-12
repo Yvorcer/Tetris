@@ -55,6 +55,7 @@ class Block
         }
         if (input.KeyPressed(Keys.W))
         {
+            ///this is a rotation, place sound here
             var roGrid = blockmat;
             blockmat = new bool[,]
             {
@@ -63,7 +64,7 @@ class Block
                 {roGrid[3,2], roGrid[2,2], roGrid[1,2], roGrid[0,2] },
                 {roGrid[3,3], roGrid[2,3], roGrid[1,3], roGrid[0,3] },
             };
-            IsA = 0;
+            IsA = 3;
         }
     }
 
