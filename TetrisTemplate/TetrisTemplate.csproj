@@ -46,6 +46,7 @@
     <Compile Include="InputHelper.cs" />
     <Compile Include="NextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Score.cs" />
     <Compile Include="TetrisGame.cs" />
     <Compile Include="TetrisGrid.cs" />
   </ItemGroup>

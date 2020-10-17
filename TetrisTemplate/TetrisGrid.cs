@@ -25,7 +25,8 @@ class TetrisGrid
     private Texture2D block;
     public Vector2 position;
     public Block Gblock;
-    public bool newblock = false;
+    public bool newblock = false, rowrem = false;
+    public int counter = 0, level = 1;
     /// <summary>
     /// Creates a new TetrisGrid.
     /// </summary>
@@ -135,6 +136,8 @@ class TetrisGrid
                         colorgrid[Le + 1, W] = colorgrid[Le, W];
                     }
                 }
+                rowrem = true;
+                counter++;
             }
         }
     }

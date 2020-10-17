@@ -40,8 +40,8 @@ class GameWorld
     TetrisGrid grid;
     Block block;
     NextBlock nextBlock;
+    Score score;
     bool pause = false;
-    float speedup = 1;
 
     public GameWorld()
     {
@@ -52,9 +52,11 @@ class GameWorld
         nextBlock = new NextBlock();
         grid = new TetrisGrid();
         block = new Block();
+        score = new Score();
         block.Grid = grid;
         grid.Gblock = block;
-        block.speedup = speedup;
+        score.grid = grid;
+        score.font = font;
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -76,6 +78,7 @@ class GameWorld
             return;
         block.Update(gameTime);
         grid.Update();
+        score.Update();
         if (grid.newblock)
         {
             block.Newblock(nextBlock.nexblock);
@@ -90,6 +93,7 @@ class GameWorld
         grid.Draw(gameTime, spriteBatch);
         block.Draw(spriteBatch);
         nextBlock.Draw(spriteBatch);
+        score.Draw(spriteBatch);
         spriteBatch.End();
     }
 

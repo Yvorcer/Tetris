@@ -15,7 +15,7 @@ class Block
     public TetrisGrid Grid;
     private InputHelper input;
     public int IsA = 0;
-    public float time = 0, speedup;
+    public float time = 0, speedup = 1;
 
     public Block()
     {
