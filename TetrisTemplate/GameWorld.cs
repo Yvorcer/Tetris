@@ -41,7 +41,8 @@ class GameWorld
     Block block;
     NextBlock nextBlock;
     Score score;
-    bool pause = false;
+    Hold hold;
+    bool pause = false, gohold = false;
 
     public GameWorld()
     {
@@ -53,10 +54,12 @@ class GameWorld
         grid = new TetrisGrid();
         block = new Block();
         score = new Score();
+        hold = new Hold();
         block.Grid = grid;
         grid.Gblock = block;
         score.grid = grid;
         score.font = font;
+        hold.font = font;
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -67,6 +70,10 @@ class GameWorld
                 pause = false;
             else
                 pause = true;
+        }
+        if (inputHelper.KeyPressed(Keys.F))
+        {
+            gohold = true;
         }
     }
 
@@ -79,6 +86,18 @@ class GameWorld
         block.Update(gameTime);
         grid.Update();
         score.Update();
+        if (gohold)
+        {
+            hold.HolBlock(block);
+            if (hold.holding == false)
+            {
+                block.Newblock(nextBlock.nexblock);
+                nextBlock = new NextBlock();
+                grid.newblock = false;
+                hold.holding = true;
+            }
+            gohold = false;
+        }
         if (grid.newblock)
         {
             block.Newblock(nextBlock.nexblock);
@@ -94,6 +113,7 @@ class GameWorld
         block.Draw(spriteBatch);
         nextBlock.Draw(spriteBatch);
         score.Draw(spriteBatch);
+        hold.Draw(spriteBatch);
         spriteBatch.End();
     }
 

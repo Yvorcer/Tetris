@@ -8,7 +8,7 @@ class Block
 {
     private Texture2D blockimg;
     public bool[,] blockmat;
-    public Vector2 position;
+    public Vector2 position, startposi;
     private Random ranblock = new Random();
     public Color blockcolor;
     public BlockInfo choblock;
@@ -24,18 +24,18 @@ class Block
         choblock = new BlockInfo(Index);
         blockmat = choblock.blockformation;
         position = choblock.StartPosi;
+        startposi = choblock.StartPosi;
         blockcolor = choblock.blockcolor;
         input = new InputHelper();
     }
 
     private void Movement()
     {
-        time += 1 * speedup;
+        time += 1 + (Grid.level*2/10);
         if(time > 60)
         {
             position.Y++;
             time = 0;
-            speedup += 0.006f;
             IsA = 0;
         }
         if (input.KeyPressed(Keys.A))
@@ -90,6 +90,7 @@ class Block
     {
         blockmat = blockInfo.blockformation;
         position = blockInfo.StartPosi;
+        startposi = blockInfo.StartPosi;
         blockcolor = blockInfo.blockcolor;
     }
 

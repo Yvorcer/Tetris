@@ -6,13 +6,14 @@ using Microsoft.Xna.Framework.Input;
 
 class Score
 {
-    private int scoreamm;
+    private int scoreamm, nexLevel;
     public TetrisGrid grid;
     public SpriteFont font;
 
     public Score()
     {
         scoreamm = 0;
+        nexLevel = 100;
     }
 
     private void AddScore()
@@ -47,13 +48,26 @@ class Score
         }
     }
 
+    private void LevelUp()
+    {
+        ///Hier in de If moet net geluid voor een LVL-up als dat word toegevoegd
+        if(scoreamm >= nexLevel)
+        {
+            grid.level += 1;
+            nexLevel += 3 * nexLevel;
+        }
+    }
+
     public void Update()
     {
         AddScore();
+        LevelUp();
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.DrawString(font, "Score: " + scoreamm, new Vector2(390, 180), Color.Blue);
+        spriteBatch.DrawString(font, "Level: " + grid.level, new Vector2(390, 210), Color.Blue);
+        spriteBatch.DrawString(font, "Next Level At: " + nexLevel, new Vector2(390, 240), Color.Blue);
     }
 }

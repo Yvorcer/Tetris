@@ -43,6 +43,7 @@
     <Compile Include="BlockInfo.cs" />
     <Compile Include="GameGrid.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Hold.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="NextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
