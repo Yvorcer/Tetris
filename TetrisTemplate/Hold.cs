@@ -59,7 +59,7 @@ class Hold
                     spriteBatch.Draw(block, new Vector2((position.X + W) * block.Width, (position.Y + L) * block.Height), Color.White);
             }
         }
-        spriteBatch.DrawString(font, "Held Block", new Vector2(410, 420), Color.Blue);
+        spriteBatch.DrawString(font, "Held Block", new Vector2(390, 420), Color.Black);
     }
 }
 

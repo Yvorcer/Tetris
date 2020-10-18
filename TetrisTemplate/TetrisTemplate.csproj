@@ -41,10 +41,15 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockInfo.cs" />
+    <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="GameGrid.cs" />
+    <Compile Include="GameStates\GameOverState.cs" />
+    <Compile Include="GameStates\GameState.cs" />
+    <Compile Include="GameStates\HelpState.cs" />
+    <Compile Include="GameStates\TitleScreenState.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Hold.cs" />
-    <Compile Include="InputHelper.cs" />
+    <Compile Include="Engine\InputHelper.cs" />
     <Compile Include="NextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Score.cs" />

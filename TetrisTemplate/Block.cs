@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
-class Block
+class Block 
 {
     private Texture2D blockimg;
     public bool[,] blockmat;
@@ -17,9 +18,20 @@ class Block
     public int IsA = 0;
     public float time = 0, speedup = 1;
 
+    private SoundEffect rotationSound;
+    private SoundEffect inputSound;
+    private SoundEffect brickHitSound;
+
     public Block()
     {
         blockimg = TetrisGame.ContentManager.Load<Texture2D>("block");
+
+        // Load in Sounds
+        rotationSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/Rotation");
+        inputSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/inputSound");
+        brickHitSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/BrickHit");
+
+
         int Index = ranblock.Next(7);
         choblock = new BlockInfo(Index);
         blockmat = choblock.blockformation;
@@ -31,8 +43,8 @@ class Block
 
     private void Movement()
     {
-        time += 1 + (Grid.level*2/10);
-        if(time > 60)
+        time += 1 + (Grid.level * 2 / 10);
+        if (time > 60)
         {
             position.Y++;
             time = 0;
@@ -42,20 +54,28 @@ class Block
         {
             position.X--;
             IsA = 1;
+            inputSound.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
         }
         if (input.KeyPressed(Keys.D))
         {
             position.X++;
             IsA = 2;
+            inputSound.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
         }
-        if (input.KeyPressed(Keys.S))
+        if (input.KeyDown(Keys.S))
         {
             position.Y++;
             IsA = 0;
+            inputSound.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
         }
+    }
+
+    private void Rotation()
+    { 
         if (input.KeyPressed(Keys.W))
         {
             ///this is a rotation, place sound here
+            rotationSound.Play();
             var roGrid = blockmat;
             blockmat = new bool[,]
             {
@@ -77,13 +97,20 @@ class Block
                 if(blockmat[L, W] && position.X + W > 9)
                 {
                     position.X--;
+                    brickHitSound.Play();
                 }
                 if (blockmat[L, W] && position.X + W < 0)
                 {
                     position.X++;
-                }
-            }
+                    brickHitSound.Play();
+                }                
+            }            
         }
+    }
+
+    internal void Update(GameTime gameTime, object effect)
+    {
+        throw new NotImplementedException();
     }
 
     public void Newblock(BlockInfo blockInfo)
@@ -96,9 +123,11 @@ class Block
 
     public void Update(GameTime gameTime)
     {
+        Rotation();
         Movement();
         Colission();
         input.Update(gameTime);
+        
     }
 
     public void Draw(SpriteBatch spriteBatch)

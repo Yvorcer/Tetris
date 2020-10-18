@@ -4,21 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
+using Microsoft.Xna.Framework.Audio;
+
 class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
 
-    /// <summary>
-    /// A static reference to the ContentManager object, used for loading assets.
-    /// </summary>
     public static ContentManager ContentManager { get; private set; }
     
 
-    /// <summary>
-    /// A static reference to the width and height of the screen.
-    /// </summary>
     public static Point ScreenSize { get; private set; }
 
     [STAThread]
@@ -54,6 +50,7 @@ class TetrisGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
         // create and reset the game world
+
         gameWorld = new GameWorld();
         gameWorld.Reset();
     }

@@ -66,8 +66,8 @@ class Score
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.DrawString(font, "Score: " + scoreamm, new Vector2(390, 180), Color.Blue);
-        spriteBatch.DrawString(font, "Level: " + grid.level, new Vector2(390, 210), Color.Blue);
-        spriteBatch.DrawString(font, "Next Level At: " + nexLevel, new Vector2(390, 240), Color.Blue);
+        spriteBatch.DrawString(font, "Score: " + scoreamm, new Vector2(390, 180), Color.Black);
+        spriteBatch.DrawString(font, "Level: " + grid.level, new Vector2(390, 210), Color.Black);
+        spriteBatch.DrawString(font, "Next Level At: " + nexLevel, new Vector2(390, 240), Color.Black);
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 /// <summary>
 /// A class for representing the Tetris playing grid.
 /// </summary>
@@ -10,6 +11,11 @@ class TetrisGrid
 {
     /// The sprite of a single empty cell in the grid.
     Texture2D emptyCell;
+
+    // Sounds nam
+    SoundEffect brickHitSound;
+    SoundEffect gameOverSound;
+
 
     /// The position at which this TetrisGrid should be drawn.
 
@@ -26,6 +32,7 @@ class TetrisGrid
     public Vector2 position;
     public Block Gblock;
     public bool newblock = false, rowrem = false;
+    public bool sound = false;
     public int counter = 0, level = 1;
     /// <summary>
     /// Creates a new TetrisGrid.
@@ -36,6 +43,12 @@ class TetrisGrid
         emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
         position = Vector2.Zero;
         block = TetrisGame.ContentManager.Load<Texture2D>("block");
+
+        // Load in the Sounds
+        brickHitSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/BrickHit");
+        gameOverSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/GameOver");
+
+
         boolgrid = new bool[,]
         {
             {false, false, false, false, false, false, false, false, false, false },
@@ -106,6 +119,7 @@ class TetrisGrid
                     boolgrid[Convert.ToInt32(L + Gblock.position.Y), Convert.ToInt32(W + Gblock.position.X)]))
                 {
                     collosion = true;
+                    brickHitSound.Play();
                 }
             }
         }
@@ -144,18 +158,23 @@ class TetrisGrid
 
     /// Makes sure that when a blockhits the top row of the grid the game stops
     public bool GameOver()
-    {
+    {        
         int L = 0;
         bool gameover = false;
         for (int W = 0; W < 10; W++)
         {
-            if (boolgrid[L, W])
+            if (boolgrid[L, W] && sound == false)
             {
-                gameover = true;
+                sound = true;
+                gameOverSound.Play();              
                 break;
-            }
+            }            
         }
-        return gameover;
+        if (sound == true)
+        {
+            gameover = true;
+        }
+        return gameover;        
     }
     
     public void Update()
@@ -230,6 +249,7 @@ class TetrisGrid
     /// </summary>
     public void Clear()
     {
+
     }
 }
 
