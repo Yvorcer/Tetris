@@ -142,6 +142,7 @@ class GameWorld
             {
                 selectSound.Play();
                 gameState = GameState.TitleSceen;
+                ///Reset alles wanner hij terug gaat naar title screen zodat het opnieuw gespeeld kan worden
                 Reset();
             }
         }
@@ -183,19 +184,17 @@ class GameWorld
                 block.Newblock(nextBlock.nexblock);
                 nextBlock = new NextBlock();
                 grid.newblock = false;
-            }
-
-            // Tetris Song only play when in the GameState.Play
-                
+            }    
         }
+        ///zorgt ervoor dat hij naar gameover screen gaat wanneer hij dat moet;
         if (gameState == GameState.Playing && grid.GameOver())
         {
             gameState = GameState.GameOverScreen;
             WasPlay = false;
+            ///had eerst geprobeerd met MediaPlayer.Stop(), maar hij will nog steeds niet opnieuw muziek spelen bij een 2de game
             MediaPlayer.Pause();
         }
     }
-        
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

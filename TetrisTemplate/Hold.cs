@@ -59,6 +59,7 @@ class Hold
             }
         }
         spriteBatch.DrawString(font, "Held Block", new Vector2(390, 420), Color.Black);
+        /// kon het om de een of andere duistere reden niet werkend krijgen in NextBlock dus heb deze hier erbij gedaan.
         spriteBatch.DrawString(font, "Next Block", new Vector2(390, 30), Color.Black);
     }
 }
