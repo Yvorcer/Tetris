@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 class Hold
 {
     private bool[,] blockmat;
-    public BlockInfo nexblock;
     private Vector2 position, blockposi;
     private Texture2D block;
     private Color blockcolor;
@@ -60,6 +59,7 @@ class Hold
             }
         }
         spriteBatch.DrawString(font, "Held Block", new Vector2(390, 420), Color.Black);
+        spriteBatch.DrawString(font, "Next Block", new Vector2(390, 30), Color.Black);
     }
 }
 

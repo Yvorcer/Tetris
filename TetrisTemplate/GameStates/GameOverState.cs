@@ -14,8 +14,8 @@ class GameOverState
 
         spriteBatch.Begin();
         spriteBatch.Draw(gameOverScreen_Background, new Vector2(0, 0), Color.White);
-        spriteBatch.DrawString(fontBig, "Score: " , new Vector2(200, 550), Color.Black);  //+ grid.level
-        spriteBatch.DrawString(fontBig, "Level: ", new Vector2(500, 550), Color.Black); //+score.scoreaem
+        spriteBatch.DrawString(fontBig, "Score: " + score.scoreamm, new Vector2(200, 550), Color.Black);  //+ grid.level
+        spriteBatch.DrawString(fontBig, "Level: " + grid.level, new Vector2(500, 550), Color.Black); //+score.scoreaem
         spriteBatch.End();
     }
 

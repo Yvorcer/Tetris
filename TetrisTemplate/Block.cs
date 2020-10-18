@@ -16,7 +16,7 @@ class Block
     public TetrisGrid Grid;
     private InputHelper input;
     public int IsA = 0;
-    public float time = 0, speedup = 1;
+    public float time = 0, speedup = 1, down = 0;
 
     private SoundEffect rotationSound;
     private SoundEffect inputSound;
@@ -64,9 +64,14 @@ class Block
         }
         if (input.KeyDown(Keys.S))
         {
-            position.Y++;
-            IsA = 0;
-            inputSound.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
+            down += 1;
+            if(down > 10)
+            {
+                position.Y++;
+                IsA = 0;
+                inputSound.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
+                down = 0;
+            }
         }
     }
 

@@ -56,7 +56,7 @@ class GameWorld
     GameOverState over;
     HelpState help;
 
-    bool pause = false, gohold = false;
+    bool pause = false, gohold = false, WasPlay = false;
 
     public GameWorld()
     {
@@ -82,6 +82,8 @@ class GameWorld
         over = new GameOverState();
         help = new HelpState();
 
+        over.grid = grid;
+        over.score = score;
         block.Grid = grid;
         grid.Gblock = block;
         score.grid = grid;
@@ -95,7 +97,7 @@ class GameWorld
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-        if (inputHelper.KeyPressed(Keys.Space))
+        if (inputHelper.KeyPressed(Keys.Space) && gameState == GameState.Playing)
         {
             selectSound.Play();
             if (pause)
@@ -103,7 +105,7 @@ class GameWorld
             else
                 pause = true;
         }
-        if (inputHelper.KeyPressed(Keys.F))
+        if (inputHelper.KeyPressed(Keys.F) && gameState == GameState.Playing)
         {
             selectSound.Play();
             gohold = true;
@@ -140,20 +142,27 @@ class GameWorld
             {
                 selectSound.Play();
                 gameState = GameState.TitleSceen;
+                Reset();
             }
         }
+        
     }
 
     public void Update(GameTime gameTime)
     {
         if (gameState == GameState.Playing)
         {
+            ///firts a function that starts the game music but only gets called once
+            if (WasPlay == false)
+            {
+                Song themeSong = TetrisGame.ContentManager.Load<Song>("Sounds/TetrisSong");
+                MediaPlayer.Volume += -0.9f;
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(themeSong);
+                WasPlay = true;
+            }
             if (pause)
                 return;
-            if (grid.GameOver())
-            {
-                return;
-            }
             block.Update(gameTime);
             grid.Update();
             score.Update();
@@ -177,12 +186,14 @@ class GameWorld
             }
 
             // Tetris Song only play when in the GameState.Play
-                Song themeSong = TetrisGame.ContentManager.Load<Song>("Sounds/TetrisSong");
-                MediaPlayer.Volume += -0.9f;
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(themeSong);
+                
         }
-
+        if (gameState == GameState.Playing && grid.GameOver())
+        {
+            gameState = GameState.GameOverScreen;
+            WasPlay = false;
+            MediaPlayer.Pause();
+        }
     }
         
 
@@ -213,8 +224,27 @@ class GameWorld
    
     }
 
+    /// <summary>
+    /// once a game has reached gameover the reset get's called to clear everything
+    /// </summary>
     public void Reset()
     {
+        nextBlock = new NextBlock();
+        grid = new TetrisGrid();
+        block = new Block();
+        score = new Score();
+        hold = new Hold();
+
+        over.grid = grid;
+        over.score = score;
+        block.Grid = grid;
+        grid.Gblock = block;
+        score.grid = grid;
+        score.font = font;
+        hold.font = font;
+        title.fontBig = fontBig;
+        over.fontBig = fontBig;
+        help.fontBig = fontBig;
     }
 
 }

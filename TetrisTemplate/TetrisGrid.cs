@@ -33,7 +33,7 @@ class TetrisGrid
     public Block Gblock;
     public bool newblock = false, rowrem = false;
     public bool sound = false;
-    public int counter = 0, level = 1;
+    public int counter = 0, level;
     /// <summary>
     /// Creates a new TetrisGrid.
     /// </summary>
@@ -47,39 +47,9 @@ class TetrisGrid
         // Load in the Sounds
         brickHitSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/BrickHit");
         gameOverSound = TetrisGame.ContentManager.Load<SoundEffect>("Sounds/GameOver");
+        level = 1;
 
-
-        boolgrid = new bool[,]
-        {
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-            {false, false, false, false, false, false, false, false, false, false },
-        };
-        colorgrid = new Color[20, 10];
-        for (int L = 0; L < 20; L++)
-        {
-            for (int W = 0; W < 10; W++)
-            {
-                colorgrid[L, W] = Color.White;
-            }
-        }
+        
         Clear();
     }
 
@@ -249,7 +219,37 @@ class TetrisGrid
     /// </summary>
     public void Clear()
     {
-
+        boolgrid = new bool[,]
+        {
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+            {false, false, false, false, false, false, false, false, false, false },
+        };
+        colorgrid = new Color[20, 10];
+        for (int L = 0; L < 20; L++)
+        {
+            for (int W = 0; W < 10; W++)
+            {
+                colorgrid[L, W] = Color.White;
+            }
+        }
     }
 }
 

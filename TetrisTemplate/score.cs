@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 class Score
 {
-    private int scoreamm, nexLevel;
+    public int scoreamm, nexLevel;
     public TetrisGrid grid;
     public SpriteFont font;
 
